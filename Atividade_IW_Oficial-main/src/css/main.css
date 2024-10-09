@@ -1,0 +1,465 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3744ff;
+    padding: 20px 50px;
+    color: white;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+.nav_bar ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav_bar ul li {
+    display: inline;
+}
+
+.nav_bar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.nav_bar ul li a:hover {
+    color: #ccc;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    background-color: #f4f4f4;
+    min-height: 80vh;
+    padding-top: 60px;
+}
+
+.cep_search {
+    margin-bottom: 20px;
+}
+
+.cep_search h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#cep_form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#cep {
+    width: 200px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+#cep_form button {
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #3744ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.cep_result {
+    width: 300px;
+    margin-top: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cep_result h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.cep_result p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.cep_history {
+    margin-top: 30px;
+}
+
+.cep_history h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#cep_historico {
+    list-style-type: none;
+    padding: 0;
+}
+
+#cep_historico li {
+    padding: 8px;
+    background-color: #e9e9e9;
+    margin-bottom: 8px;
+    border-radius: 4px;
+}
+
+.direita_contain {
+    display: inline-block;
+    margin-left: 5vw;
+}
+
+.esquerda_contain {
+    float: inline-start;
+    margin-right: 5vw;
+}
+
+select {
+    width: 250px; /* Ajusta a largura */
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    appearance: none; /* Remove a seta padrão em alguns navegadores */
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.select_wrapper {
+    position: relative;
+    display: inline-block;
+    width: 250px;
+}
+
+#estado_input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#estado_input:focus {
+    border-color: #007bff; /* Cor ao focar no input */
+    outline: none; /* Remove o contorno padrão */
+}
+
+#estado_list {
+    position: absolute;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    z-index: 10;
+    max-height: 200px; /* Limita a altura da lista */
+    overflow-y: auto; /* Adiciona rolagem se necessário */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#estado_list li {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#estado_list li:hover {
+    background-color: #f0f0f0; /* Cor ao passar o mouse */
+}
+
+#estado_list li:focus {
+    background-color: #007bff; /* Cor ao focar com o teclado */
+    color: white; /* Texto branco ao focar */
+}
+
+#estado_list li.no-result {
+    color: red;
+    text-align: center;
+    padding: 10px;
+}
+
+.cep_input_direita {
+    width: 200px;
+    padding: 8px;
+    font-size: 16px;
+    display: block;
+}
+
+.criar_historico {
+    width: 50%;
+    margin-top: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section_historico {
+    display: inline-block;
+    width: 35%;
+    height: 75%;
+    background-color: #a1a1aa;
+    border-radius: 0px 50px 50px 50px;
+    padding: 20px;
+}
+
+.ceps_encontrados {
+    width: 35%;
+    height: 50vh;
+    background-color: #a1a1aa;
+    border-radius: 0px 50px 50px 50px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container_info {
+    margin-top: 15vh;
+    width: 100%;
+    height: 75vh;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start; /* Corrigido para flex-start */
+    overflow: hidden; /* Evita que o conteúdo saia da div */
+}
+
+/* Estilos específicos para o textarea */
+textarea {
+    width: 100%; /* Garante que o textarea ocupe 100% da largura da div pai */
+    max-width: 100%; /* Limita a largura do textarea à largura da div pai */
+    min-height: 300px; /* Ajusta a altura mínima */
+    max-height: 300px; /* Limita a altura máxima do textarea */
+    padding: 10px; /* Adiciona padding para melhor legibilidade */
+    font-size: 16px; /* Ajusta a fonte */
+    border: 1px solid #ccc; /* Borda do textarea */
+    border-radius: 4px; /* Borda arredondada */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    resize: vertical; /* Permite redimensionar verticalmente */
+    overflow: auto; /* Adiciona rolagem se necessário */
+}
+.pointer{
+    cursor: pointer;
+}
+.buttom_exluir{
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #5f606f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-left: 35%;
+}
+
+ /*Parte clima*/
+ .container_temp{
+    height: 100%;
+    background-color: #000000;
+}
+/*Header*/
+.search_bar{
+    display: flex;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 50px;
+    gap: 3px;
+}
+.search_bar input {
+    background-color: transparent;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding-left: 8px;
+}
+.search_bar button{
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+.search_bar button i{
+    color: rgb(0, 0, 0); 
+}
+.search_bar input:focus-visible {
+    outline: none;
+}
+.logo_contain{
+    display: flex;  
+    align-items: center;
+    gap: 6px;
+}
+.logo_contain i{
+    font-size: 37px; 
+}
+
+/*Container1*/
+
+.container{
+    display: flex;
+    margin: 20px;
+    background-color: transparent;
+    gap: 40px;
+    
+}
+.header_temp{
+    background-color: #303030;
+}
+
+/*Tempo agora*/
+
+.now{
+    padding: 20px;
+    width: 20%;
+    background-color: #2a2a2a;
+    border-radius: 20px;
+    color: white;
+    align-self: flex-start; 
+}
+.now h2{
+    font-weight: 400;
+}
+.org_now {
+    display: flex;
+    align-items: center;
+    height: 34%;
+}
+.org_now h1 {
+    display: inline-flex; /* Alinha os elementos dentro do H1 */
+    align-items: flex-start;
+    font-size: 5vw; 
+    font-weight: 500;
+    margin: 0;
+}
+
+.org_now span {
+    display: flex;
+    align-items: flex-start;
+    font-family: "Roboto", sans-serif;
+}
+.degree {
+    padding-top: 9px;
+    font-size: 2vw;
+    vertical-align: top;
+    margin-left: 5px;
+}
+.org_now img{
+    width: 9vw;
+}
+.location{
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: solid 2px black  ;
+}
+
+
+/*5 dias*/
+.days{
+    width: 80%;
+    background-color: #3b3b3b;
+    border-radius: 10px;
+
+}
+
+.days h1 {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px; /* Adiciona espaço após o h1 */
+  
+}
+
+.container-previsao {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha se necessário */
+   
+    height: 90%;
+    gap: 20px; /* Ajusta o espaçamento entre os itens */
+    padding: 20px; /* Espaço interno para o container */
+  }
+  
+  .previsao-item {
+    width: 10vw;
+    display: flex;
+    flex: 1 1 140px; /* Faz com que os itens sejam flexíveis e ajustem seu tamanho */
+    flex-direction: column;
+    align-items: center;
+    margin: 10px; /* Espaço entre os itens de previsão */
+    background-color: #2a2a2a; /* Um fundo mais claro para os cards */
+    border-radius: 10px; /* Bordas arredondadas para suavizar os blocos */
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacar os itens */
+    color: white;
+}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Empilha os blocos verticalmente */
+        align-items: center; /* Centraliza os itens no eixo horizontal */
+    }
+    
+    .now {
+        width: 100%; /* O "Agora" ocupa 100% da largura da tela */
+        margin-bottom: 20px; /* Adiciona espaço entre o "Agora" e a "Previsão" */
+    }
+    
+    .days {
+        width: 100%; /* Previsão ocupa 100% da largura também */
+    }
+}
+
+/* Informações Clima*/
+
+.info_temp {
+    padding: 20px;
+    color: white;
+    width: 95%;
+    height: 35vh;
+    background-color: #303030;
+    margin-left: 2vw;
+    border-radius: 20px;    
+}
+
+.itens_info_temp {  
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha se necessário */
+    height: 90%;
+    gap: 20px; /* Ajusta o espaçamento entre os itens */
+    padding: 20px; /* Espaço interno para o container */
+}
+
+.info_item {
+    flex: 1 1 140px; /* Faz com que os itens sejam flexíveis e ajustem seu tamanho */
+    background-color: #2A2A2A;
+    border-radius: 20px;
+    text-align: center; /* Centraliza o texto */
+}
+
+.info_item p {
+    padding: 1vw;
+}
+
+.org_info_temp {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Alterado para center para melhor alinhamento */
+    gap: 20px;
+}
+
+.org_info_temp span {
+    font-size: 2vw;
+}
+
+.org_info_temp i {
+    font-size: 4vw;
+    margin-right: 5px; /* Adicionado espaço entre ícone e texto */
+}

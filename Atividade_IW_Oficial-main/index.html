@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/css/reset.css">
+    <link rel="stylesheet" href="./src/css/main.css">
+    
+    <!--Clima link-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic. com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?  family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,    700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&  display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>   
+    <header>
+        <div class="logo">
+            <H1>Busca CEP</H1>
+        </div>
+        <nav class="nav_bar">
+            <ul>
+                <li onclick="scrollToSection('historico_1')" class="pointer">Histórico</li>
+                <li onclick="scrollToSection('historico_2')" class="pointer">CEPS encontrados no endereço</li>
+            </ul>
+        </nav>
+    </header>
+    <!--Por cep-->
+    <main class="main">
+        <div class="esquerda_contain">
+            <section class="cep_search">
+                <h2>Consulta por CEP</h2>
+                <form id="cep_form" onsubmit="event.preventDefault(); pesquisacep(cep.value);">
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" placeholder="Digite o CEP" maxlength="12" autocomplete="off">      
+                    <button type="submit">Pesquisar</button>
+                    <button type="reset" onclick="limpa_formularioCep()">Limpar</button>
+                </form>
+                
+            </section>
+
+            <section class="cep_result">
+                <h3>Resultado:</h3>
+                <div id="cep_details">
+                    <p>Rua: <span id="rua_cep"></span></p>
+                    <p>Bairro: <span id="bairro_cep"></span></p>
+                    <p>Cidade: <span id="cidade_cep"></span></p>
+                    <p>Estado: <span id="estado_cep"></span></p>
+                <h4>Saber mais: <p><a href="#container_temp">Temperatura</a></p></h4>
+                </div>
+            </section>
+            
+        </div>
+         <!--Por endereço-->
+        <div class="direita_contain">
+            <section class="cep_search">
+                <h2>Consulta por Endereço</h2>
+                <form id="cep_form" onsubmit="event.preventDefault(); pesquisarCepPorEndereco(estado_input.value, cidade_input.value, rua_input.value);">
+                    <div class="select_wrapper">
+                        <label for="estado_input">Estado:</label>
+                        <input type="text" id="estado_input" placeholder="Selecione um estado" autocomplete="off" >
+                            <ul id="estado_list" class="estado_list" style="display: none;" onclick="selecionarEstado(event)">
+                                <li data-value="AC" onclick="selecionarEstado(this)">Acre (AC)</li>
+                                <li data-value="AL" onclick="selecionarEstado(this)">Alagoas (AL)</li>
+                                <li data-value="AP" onclick="selecionarEstado(this)">Amapá (AP)</li>
+                                <li data-value="AM" onclick="selecionarEstado(this)">Amazonas (AM)</li>
+                                <li data-value="BA" onclick="selecionarEstado(this)">Bahia (BA)</li>
+                                <li data-value="CE" onclick="selecionarEstado(this)">Ceará (CE)</li>
+                                <li data-value="DF" onclick="selecionarEstado(this)">Distrito Federal (DF)</li>
+                                <li data-value="ES" onclick="selecionarEstado(this)">Espírito Santo (ES)</li>
+                                <li data-value="GO" onclick="selecionarEstado(this)">Goiás (GO)</li>
+                                <li data-value="MA" onclick="selecionarEstado(this)">Maranhão (MA)</li>
+                                <li data-value="MT" onclick="selecionarEstado(this)">Mato Grosso (MT)</li>
+                                <li data-value="MS" onclick="selecionarEstado(this)">Mato Grosso do Sul (MS)</li>
+                                <li data-value="MG" onclick="selecionarEstado(this)">Minas Gerais (MG)</li>
+                                <li data-value="PA" onclick="selecionarEstado(this)">Pará (PA)</li>
+                                <li data-value="PB" onclick="selecionarEstado(this)">Paraíba (PB)</li>
+                                <li data-value="PR" onclick="selecionarEstado(this)">Paraná (PR)</li>
+                                <li data-value="PE" onclick="selecionarEstado(this)">Pernambuco (PE)</li>
+                                <li data-value="PI" onclick="selecionarEstado(this)">Piauí (PI)</li>
+                                <li data-value="RJ" onclick="selecionarEstado(this)">Rio de Janeiro (RJ)</li>
+                                <li data-value="RN" onclick="selecionarEstado(this)">Rio Grande do Norte (RN)</li>
+                                <li data-value="RS" onclick="selecionarEstado(this)">Rio Grande do Sul (RS)</li>
+                                <li data-value="RO" onclick="selecionarEstado(this)">Rondônia (RO)</li>
+                                <li data-value="RR" onclick="selecionarEstado(this)">Roraima (RR)</li>
+                                <li data-value="SC" onclick="selecionarEstado(this)">Santa Catarina (SC)</li>
+                                <li data-value="SP" onclick="selecionarEstado(this)">São Paulo (SP)</li>
+                                <li data-value="SE" onclick="selecionarEstado(this)">Sergipe (SE)</li>
+                                <li data-value="TO" onclick="selecionarEstado(this)">Tocantins (TO)</li>
+                            </ul>
+                    </div>
+                    <label for="cidade_input">Cidade:</label>
+                    <input class="cep_input_direita" type="text" id="cidade_input" value="Americana" placeholder="Escreva a cidade" autocomplete="off">
+                    <label for="rua_input">Rua:</label>
+                    <input class="cep_input_direita" type="text" value="Rua A" id="rua_input" placeholder="Escreva a Rua" autocomplete="off">
+
+                    <button  type="submit">Pesquisar</button>
+                    <button type="reset" onclick="limpa_formularioCep()">Limpar</button>
+
+            </form>
+
+            </section>
+        
+            <section class="cep_result">
+                <h3>Resultado:</h3>
+                <div id="cep_details">
+                    <p>Rua: <span id="rua_endereco"></span></p>
+                    <p>Bairro: <span id="bairro_endereco"></span></p>
+                    <p>Cidade: <span id="cidade_endereco"></span></p>
+                    <p>Estado: <span id="estado_endereco"></span></p>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+    <!--Contaner de historico e ceps encontrados-->
+    <div class="container_info">
+        
+        <section class="section_historico" id="historico_1">
+            <h1>Historico de CEPS</h1>
+            <div id="adicionar">
+                <textarea id="CEPS"></textarea>
+            </div>
+            <button onclick="limparHistorico()" class="buttom_exluir">Limpar Histórico</button> 
+        </section>
+
+        <section class="section_historico" id="historico_2">
+            <h1>Historico de CEPS</h1>
+            <div id="adicionar">
+                <textarea id="textarea"  rows="10" cols="50"></textarea>
+            </div>
+            <button onclick="limparCeps()" class="buttom_exluir">Limpar CEPS</button> 
+        </section>
+    </div>
+    <!--Clima aqui-->
+    <div class="container_temp" id="container_temp">
+        <header class="header_temp">
+            <div class="logo_contain">
+                <i class="bi bi-cloud"></i>    
+                <h1>Clima</h1>
+            </div>
+            <div class="search_bar">
+                <input type="text" id="cidade_temp" placeholder="Pesquisar cidade" >
+                <button onclick="trazercidade()">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </header>
+    
+        <div class="container">
+            <div class="now"> 
+                <h2>Agora</h2>
+                <div class="org_now">
+                    <h1><span id="Temperatura">56</span><span class="degree">°C</span></h1>
+                    <img id="imagem_now" src="http://openweathermap.org/img/wn/01d@2x.png" alt="Nublado" width="50">
+                </div>
+                
+                <p id="descricao_now">Ceu limpo</p>
+                
+                <div class="location">
+                    <i class="bi bi-geo-alt"></i>
+                    <span id="Pais">Brazil</span>
+                </div>
+            </div>
+   
+            <div class="days">
+                <h2 style="color: white; margin: 10px 0px 0px 10px;">Previsão para 5 dias</h2>
+                <div class="container-previsao">
+                    <div class="previsao-item">
+                        <p>nublado</p>
+                        <img src="http://openweathermap.org/img/wn/01d@2x.png" alt="Nublado">
+                        <p>56</p>
+                        <p>segunda</p>
+                    </div>
+                    <div class="previsao-item">
+                        <p>nublado</p>
+                        <img src="http://openweathermap.org/img/wn/01d@2x.png" alt="Nublado">
+                        <p>56</p>
+                        <p>terça</p>
+                    </div>
+                    <div class="previsao-item">
+                        <p>nublado</p>
+                        <img src="http://openweathermap.org/img/wn/01d@2x.png" alt="Nublado">
+                        <p>56</p>
+                        <p>quarta</p>
+                    </div>
+                    <div class="previsao-item">
+                        <p>nublado</p>
+                        <img src="http://openweathermap.org/img/wn/01d@2x.png" alt="Nublado">
+                        <p>56</p>
+                        <p>quinta</p>
+                    </div>
+                    <div class="previsao-item">
+                        <p>nublado</p>
+                        <img src="http://openweathermap.org/img/wn/01d@2x.png" alt="Nublado">
+                        <p>56</p>
+                        <p>sexta</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    
+        
+        <div class="info_temp">
+            <h2>Informações</h2>
+            <section class="itens_info_temp">
+                <div class="info_item">
+                    <p>Humidade</p>
+                    <div class="org_info_temp">
+                        <i class="fa-solid fa-water"></i> 
+                        <span id="humidade">50%</span>
+                    </div>
+                </div>
+                <div class="info_item">
+                    <p>Velocidade Ventos</p>
+                    <div class="org_info_temp">
+                        <i class="fa-solid fa-wind"></i>
+                        <span id="velventos">50%</span>
+                    </div>
+                </div>
+                <div class="info_item">
+                    <p>Presão</p>
+                    <div class="org_info_temp">
+                        <i class="fa-solid fa-tachometer-alt"></i> 
+                        <span id="presao">50%</span>
+                    </div>
+                </div>
+                <div class="info_item">
+                    <p>Visibilidade</p>
+                    <div class="org_info_temp">
+                        <i class="fa-solid fa-eye"></i>
+                        <span id="visibility">50%</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="src/js/script.js"></script>
+    <script src="src/js/cep.js"></script>
+    <script src="src/js/temp.js"></script>
+</body>
+</html>
